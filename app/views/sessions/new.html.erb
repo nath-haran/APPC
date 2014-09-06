@@ -1,0 +1,18 @@
+<% provide(:title,"sign in") %>
+<%= form_for(:session, url: sessions_path) do |f| %>
+	 <div id="flash_messages">
+	  <% flash.each do |key, value| %>
+	    <%= content_tag(:div, value, :class => "flash #{key}") %>
+	  <% end %>
+	  </div>
+      <%= f.label :roll_number %>
+      <%= f.text_field :roll_number %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+    
+
