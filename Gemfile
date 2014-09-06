@@ -38,7 +38,10 @@ gem 'rails_12factor'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'bcrypt', '~> 3.1.7'
 group :production do
   gem 'thin'
 end
+
+
 
