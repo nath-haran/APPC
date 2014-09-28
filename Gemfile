@@ -43,5 +43,6 @@ group :production do
   gem 'thin'
 end
 
+gem 'bootstrap-sass', '~> 3.2.0'
 
 

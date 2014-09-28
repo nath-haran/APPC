@@ -18,8 +18,8 @@ class UsersController < ApplicationController
 				UserMailer.welcome_email(@user).deliver
 				redirect_to signin_path
 			else
-				#redirect_to signup_path
-				render 'new'
+				redirect_to signup_path
+				#render 'new'
 			end
 	#	end
 
