@@ -1,0 +1,19 @@
+<body>
+Companies
+<div id="flash_messages">
+ <% flash.each do |key, value| %>
+   <%= content_tag(:div, value, :class => "flash #{key}") %>
+ <% end %>
+ </div>
+<% @companies.each do |c| %>
+	<div>
+		
+	
+	<%= form_for(:student_lists,url: studentlists_new_path,method: "post") do |f| %>
+	<%=f.label  c.name%>
+	<%= f.hidden_field :name, value: c.name%>
+	
+	<%= f.submit "register"%>
+	<% end %></div> <br>
+<% end %>
+</body>

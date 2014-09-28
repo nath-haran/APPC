@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
    before_save { self.email = email.downcase }
    before_create :create_remember_token
   has_secure_password
+  has_many :studentlists
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
