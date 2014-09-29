@@ -9,7 +9,10 @@ class User < ActiveRecord::Base
    before_save { self.email = email.downcase }
    before_create :create_remember_token
   has_secure_password
-  has_many :studentlists
+  validates :dp, presence:true
+  has_attached_file :dp, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :dp, :content_type => /\Aimage\/.*\Z/
+    
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end

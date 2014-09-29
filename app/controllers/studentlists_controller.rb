@@ -10,7 +10,7 @@ class StudentlistsController < ApplicationController
 		@st.save!
 		redirect_to companies_path
 		else
-			flash[:error]="fuck you...you  dont have enought cgpa "
+			flash[:error]="you  dont have enought cgpa "
 			redirect_to companies_path
 
 		end

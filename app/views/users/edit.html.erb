@@ -3,13 +3,19 @@
 
 <div class="container">
 <h1>Sign up</h1>
-    <%= form_for(@user,html:{class: 'form-horizontal',multipart: true}) do |f| %>
+    <%= form_for(:user,html:{class: 'form-horizontal',multipart: true}) do |f| %>
       <div >
       <% if @user.errors.any? %>
       <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       <% end %>
+      </div>
+      <div class="form-group">
+      <%= f.label :roll   ,class: "col-md-2 control-label", value: @user.roll_number%>
+      <div class="col-md-4">
+      <%= f.text_field :roll_number ,class: "form-control" , disabled: true%>
+      </div>
       </div>
       <div class="form-group">
 
@@ -24,18 +30,8 @@
         <%= f.text_field :email ,class: "form-control" %>
       </div>
       </div>
-      <div class="form-group">
-      <%= f.label :password ,class: "col-md-2 control-label"%>  
-      <div class="col-md-4">
-      <%= f.password_field :password ,class: "form-control" %>
-      </div>
-      </div>
-      <div class="form-group">
-      <%= f.label :password_confirmation, "Confirmation",class: "col-md-2 control-label" %>
-      <div class="col-md-4">
-      <%= f.password_field :password_confirmation ,class: "form-control" %>
-      </div>
-      </div>
+      
+      
       <div class="form-group">
       <%= f.label :cgpa ,class: "col-md-2 control-label"%>
       <div class="col-md-4">
@@ -54,12 +50,7 @@
       <%= f.text_field :gender  ,class: "form-control" %>
       </div>
       </div>
-      <div class="form-group">
-      <%= f.label :roll   ,class: "col-md-2 control-label"%>
-      <div class="col-md-4">
-      <%= f.text_field :roll_number ,class: "form-control" %>
-      </div>
-      </div>
+      
       <div class="form-group">
       <%= f.label :photo ,class: "col-md-2 control-label"%>
       <div class="col-md-4">

@@ -3,13 +3,15 @@ Rails.application.routes.draw do
 
    #get 'user/create'
    #match 'users/new' 
-   resources :users
+   resources :users, only: [:new,:create]
    resources :sessions, only: [:new, :create, :delete]
    match '/signin', to: 'sessions#new',  via: :get
    match '/signup', to: 'users#new',  via: :get
    match '/signout', to:'sessions#destroy',  via: [:delete, :get]
-   
+   match '/profile', to: 'users#profile', via: :get
    match '/sessions', to: 'sessions#new', via: :get
+   match '/users/edit', to: 'users#edit', as: :edit_user, via: :get
+
    resources :companies
    root 'companies#index'
    match 'studentlists/new', to: 'studentlists#create', via: :post

@@ -8,6 +8,9 @@ class UsersController < ApplicationController
 		
 		@user=User.new
 	end
+	def edit
+		@user=current_user
+	end
 	def create
 		#if signed_in? 
 		#	redirect_to home_path
@@ -18,19 +21,23 @@ class UsersController < ApplicationController
 				#UserMailer.welcome_email(@user).deliver
 				redirect_to signin_path
 			else
-				redirect_to signup_path
-				#render 'new'
+				#redirect_to signup_path
+				render 'new'
 			end
 	#	end
 
 	end
-	def show
+	def profile
+		@current_user=current_user
 	end
+		
+		
+	
 	private
 
 	   def user_params
 	      params.require(:user).permit(:name, :email, :password,
-	                                   :password_confirmation,:age, :cgpa, :roll_number, :gender)
+	                                   :password_confirmation,:age, :cgpa, :roll_number, :gender, :dp)
 	  	end
 
 end
