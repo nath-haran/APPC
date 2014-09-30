@@ -5,6 +5,10 @@ class UsersController < ApplicationController
      # redirect_to home_path,  if signed_in?
     #end
 	def new
+		if !signed_in?
+      redirect_to home_path
+      
+    end
 		
 		@user=User.new
 	end
@@ -29,6 +33,10 @@ class UsersController < ApplicationController
 	end
 	def profile
 		@current_user=current_user
+		if(current_user.nil?)
+			flash[:error]="Please login to continue"
+			redirect_to signin_path
+		end
 	end
 		
 		

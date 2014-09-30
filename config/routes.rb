@@ -11,7 +11,10 @@ Rails.application.routes.draw do
    match '/profile', to: 'users#profile', via: :get
    match '/sessions', to: 'sessions#new', via: :get
    match '/users/edit', to: 'users#edit', as: :edit_user, via: :get
-
+   match '/admin_login', to: 'sessions#admin_new', via: :get
+   match '/admin_create', to: 'sessions#admin_create', via: :post
+   match '/admin_signout', to: 'sessions#admin_destroy', via: :delete
+   match '/admin_home', to: 'admin#home', via: :get
    resources :companies
    root 'companies#index'
    match 'studentlists/new', to: 'studentlists#create', via: :post

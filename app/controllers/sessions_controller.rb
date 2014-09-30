@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   def destroy
 
     sign_out if !signed_in?
-    redirect_to signin_path
+    redirect_to root_path
   end
 	def create
     user = User.find_by(roll_number: params[:session][:roll_number])
@@ -25,4 +25,30 @@ class SessionsController < ApplicationController
       redirect_to(action: 'new')
     end
   end
+
+    # admin session pages
+  def admin_new
+    if !admin_signed_in?
+      redirect_to admin_home_path
+      
+    end
+  end
+  def admin_destroy
+
+    admin_sign_out if !admin_signed_in?
+    redirect_to admin_signin_path
+  end
+  def admin_create
+    admin = Admin.find_by(username: params[:session][:username])
+    if admin && admin.authenticate(params[:session][:password])
+      # Sign the user in and redirect to the user's show page.
+      admin_sign_in admin
+      redirect_to admin_home_path
+    else
+      flash[:error] = 'Invalid email/password combination' # Not quite right!
+      redirect_to(action: 'new')
+    end
+  end
+
+
 end

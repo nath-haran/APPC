@@ -22,5 +22,24 @@ module SessionsHelper
     cookies.delete(:remember_token)
     self.current_user = nil
   end
+
+
+  #admin helpers
+    def admin_sign_in(admin)
+      
+      cookies.permanent[:admin_remember_token] = admin.username
+      
+      
+    end
+     def admin_signed_in?
+      @admin=Admin.find_by(username: cookies[:admin_remember_token])
+      @admin.nil?
+    end
+    def admin_sign_out
+      
+      cookies.delete(:admin_remember_token)
+      
+    end
+
 end
 
