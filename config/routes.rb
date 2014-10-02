@@ -15,6 +15,7 @@ Rails.application.routes.draw do
    match '/admin_create', to: 'sessions#admin_create', via: :post
    match '/admin_signout', to: 'sessions#admin_destroy', via: :delete
    match '/admin_home', to: 'admin#home', via: :get
+   match '/users/update', to: 'users#update', via: [:post , :patch]
    resources :companies
    root 'companies#index'
    match 'studentlists/new', to: 'studentlists#create', via: :post

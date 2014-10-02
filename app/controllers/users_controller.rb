@@ -13,16 +13,28 @@ class UsersController < ApplicationController
 		@user=User.new
 	end
 	def edit
+		#@user=User.new
 		@user=current_user
+		
+	end
+	def update
+		@user=current_user
+#		@user.password=
+		if(@user.update(user_update_params))
+			redirect_to profile_path
+		else
+			render 'edit'
+		end
 	end
 	def create
 		#if signed_in? 
 		#	redirect_to home_path
 		#else
+
 			@user=User.new(user_params)
 			if(@user.save)
 				#render 'success'
-				#UserMailer.welcome_email(@user).deliver
+				UserMailer.welcome_email(@user).deliver
 				redirect_to signin_path
 			else
 				#redirect_to signup_path
@@ -46,6 +58,9 @@ class UsersController < ApplicationController
 	   def user_params
 	      params.require(:user).permit(:name, :email, :password,
 	                                   :password_confirmation,:age, :cgpa, :roll_number, :gender, :dp)
+	  	end
+	  	def user_update_params
+	      params.require(:user).permit(:name, :email,:age, :cgpa, :roll_number, :gender,:password , :password_confirmation,:dp)
 	  	end
 
 end

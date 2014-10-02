@@ -18,16 +18,8 @@
             <li>
             <% end %>
             <%= link_to "Home",root_path %></li>
-            <% if(params[:controller]=='users') %>
-            <li class="active">
-            <% else %>
-            <li>
-            <% end %><%= link_to "Profile",profile_path %></li>
-            <% if(params[:controller]=='companies') %>
-            <li class="active">
-            <% else %>
-            <li>
-            <% end %><%= link_to "Companies",companies_path %></li>
+            <li><%= link_to "Profile",profile_path %></li>
+            <li><%= link_to "Companies",companies_path %></li>
             </ul>
             <% if(current_user.nil?)  %>
 
