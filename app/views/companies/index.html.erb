@@ -1,20 +1,99 @@
 <%= render 'layouts/header' %>
 <body>
-Companies
-<div id="flash_messages">
- <% flash.each do |key, value| %>
-   <%= content_tag(:div, value, :class => "flash #{key}") %>
- <% end %>
- </div>
-<% @companies.each do |c| %>
-	<div>
+
+
+
+	
 		
 	
-	<%= form_for(:student_lists,url: studentlists_new_path,method: "post") do |f| %>
-	<%=f.label  c.name%>
-	<%= f.hidden_field :name, value: c.name%>
+
 	
-	<%= f.submit "register"%>
-	<% end %></div> <br>
-<% end %>
+<div class="container" style="margin-left:30%;">
+
+    
+    	<div class="row">
+
+    		  		<% if(!flash[:error].nil?) %>
+    			  <% flash.each do |key, value| %>
+    			  <div class=" alert alert-danger" style="width:48%" >
+    			    
+    			    <ul>
+    		      <li><%= content_tag(:div, value, :class => "flash #{key}") %></li>
+    		    <% end %>
+    		    </ul>
+    		    <% end %>
+    		    <% if(!flash[:success].nil?) %>
+    			  <% flash.each do |key, value| %>
+    			  <div class=" alert alert-success" style="width:48%" >
+    			    
+    			    <ul>
+    		      <li><%= content_tag(:div, value, :class => "flash #{key}") %></li>
+    		    <% end %>
+    		    </ul>
+    		    <% end %>
+    		  </div>
+    		
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Companies</h3>
+						<div class="pull-right">
+							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+								<i class="glyphicon glyphicon-filter"></i>
+							</span>
+						</div>
+					</div>
+					<div class="panel-body">
+						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
+					</div>
+					<table class="table table-hover" id="dev-table">
+						<thead>
+							<tr>
+								
+								<th>Company Name</th>
+
+								
+								<th>LastDate for Registration</th>
+								<th>Date of Interview</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @companies.each do |c| %>
+								<%= form_for(:student_lists,url: studentlists_new_path,method: "post") do |f| %>
+							<tr>
+								<td><div class="po-markup">
+         <%= link_to c.name, "#", class: "po-link" %>   
+       
+
+        <div class="po-content hidden">
+          <div class="po-title">
+            <%= c.name %>
+            </div> <!-- ./po-title -->
+            
+            <div class="po-body">
+              <p>
+                  Click on this link to view the complete agenda
+              </p>
+              
+              </div><!-- ./po-body -->
+              </div>  <!-- ./po-content -->
+              </div><!-- ./po-markup --></td> 
+								<td><%= c.lastdate %> </td>
+								<td><%= c.date %></td>
+								<td><%= f.submit "register"%></td>
+							</tr>
+							<% end %>
+							<% end %>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+     
 </body>
+
+
+
