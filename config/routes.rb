@@ -7,7 +7,7 @@ Rails.application.routes.draw do
    resources :sessions, only: [:new, :create, :delete]
    match '/signin', to: 'sessions#new',  via: :get
    match '/signup', to: 'users#new',  via: :get
-   match '/signout', to:'sessions#destroy',  via: [:delete, :get]
+   match '/signout', to:'sessions#destroy',  via: [:delete]
    match '/profile', to: 'users#profile', via: :get
    match '/sessions', to: 'sessions#new', via: :get
    match '/users/edit', to: 'users#edit', as: :edit_user, via: :get
@@ -19,6 +19,9 @@ Rails.application.routes.draw do
    resources :companies
    root 'companies#index'
    match 'studentlists/new', to: 'studentlists#create', via: :post
+   match 'reminder', to: 'admin#reminder', via: :post
+   match 'send_reminder', to: 'admin#send_reminder', via: :get
+   match 'companies/agenda/:company', to: 'companies#company_agenda', via: :get
 #must change root
   # root  'home#index'
    #root to: "users#new"

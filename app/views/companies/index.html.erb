@@ -62,12 +62,13 @@
 								<%= form_for(:student_lists,url: studentlists_new_path,method: "post") do |f| %>
 							<tr>
 								<td><div class="po-markup">
-         <%= link_to c.name, "#", class: "po-link" %>   
+
+         <%= link_to c.name, "/companies/agenda/"+c.name, class: "po-link" %>   
        
 
         <div class="po-content hidden">
           <div class="po-title">
-            <%= c.name %>
+            <%= c.name %><%= f.hidden_field :name, value: c.name %>
             </div> <!-- ./po-title -->
             
             <div class="po-body">
@@ -80,7 +81,11 @@
               </div><!-- ./po-markup --></td> 
 								<td><%= c.lastdate %> </td>
 								<td><%= c.date %></td>
-								<td><%= f.submit "register"%></td>
+								<% if c.lastdate<@date %>
+								<td><%= f.button "register1", onclick: "alert('Registrations are closed!'); event.preventDefault();" %></td>
+								<% else %>
+								<td><%= f.submit "register" %></td>
+								<% end %>
 							</tr>
 							<% end %>
 							<% end %>

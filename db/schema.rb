@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141002103241) do
+ActiveRecord::Schema.define(version: 20141006180104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20141002103241) do
     t.string   "email"
     t.integer  "age"
     t.float    "cgpa"
-    t.integer  "roll_number",     null: false
+    t.integer  "roll_number",                     null: false
     t.string   "gender"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20141002103241) do
     t.string   "dp_content_type"
     t.integer  "dp_file_size"
     t.datetime "dp_updated_at"
+    t.boolean  "placed",          default: false
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree

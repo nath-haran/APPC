@@ -47,7 +47,10 @@
       <div class="form-group">
       <%= f.label :gender ,class: "col-md-2 control-label"%>
       <div class="col-md-4">
-      <%= f.text_field :gender  ,class: "form-control" %>
+      <%= f.label :Male %>
+     <%= f.radio_button :gender,'M'  %>
+     <%= f.label :Female %>
+     <%= f.radio_button :gender,'F'  %>
       </div>
       </div>
       

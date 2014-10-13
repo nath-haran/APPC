@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates :cgpa, presence:true
   validates :password, presence:true, length: { minimum: 8 }
   validates :age, presence:true
+   validates :gender, presence:true
   validates :roll_number, presence:true, uniqueness: true
    before_save { self.email = email.downcase }
    before_create :create_remember_token

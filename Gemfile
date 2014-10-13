@@ -47,3 +47,5 @@ gem 'bootstrap-sass', '~> 3.2.0'
 #upload management
 gem "paperclip", :git => "https://github.com/thoughtbot/paperclip.git"
 
+gem 'bootstrap-will_paginate', '0.0.9'
+

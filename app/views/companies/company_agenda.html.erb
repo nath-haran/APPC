@@ -1,34 +1,7 @@
+<%= render 'layouts/header' %>
+<div class="container">
 
-<%= render 'layouts/admin_header' %>
-
-<center>
-<h2>Add Companies </h2>
-<%= form_for(:company, url: companies_path,html:{class:" form-inline"}) do |f| %>
-    <div class="form-group">
-	<%= f.label :name %>
-	<%= f.text_field :name ,required: true%>
-    </div>
-    <div class="form-group">
-	<%= f.label :cgpa %>
-	<%=  f.number_field :cgpa ,  :step => 'any' %>
-    </div>
-    <div class="form-group">
-	<%= f.label :date %>
-	<%= f.date_field :date %>
-    </div>
-    <div class="form-group">
-	<%= f.label :lastdate %>
-	<%= f.date_field :lastdate %>
-    </div>
-    <div class="form-group">
-	<%= f.submit "submit", class:"btn btn-primary" %>
-    </div>
-    <% end %>
-    </center>
-<div class="container">    
-	<%= will_paginate(@companies, :renderer => WillPaginate::ActionView::LinkRenderer) %>
-	<% @companies.each do |c| %>
-	<h2><%= c.name %></h2>
+	<h2><%= @c.name %></h2>
    
    
     <hr />
@@ -47,9 +20,9 @@
                     <!-- Single event in a single day -->
                     <tr>
                         <td class="agenda-date" class="active" rowspan="1">
-                            <div class="dayofmonth"><%= c.lastdate.strftime("%d")%></div>
-                            <div class="dayofweek"><%= c.lastdate.strftime("%A") %></div>
-                            <div class="shortdate text-muted"><%= c.lastdate.strftime("%B") %>, <%= c.lastdate.strftime("%Y") %></div>
+                            <div class="dayofmonth"><%= @c.lastdate.strftime("%d")%></div>
+                            <div class="dayofweek"><%= @c.lastdate.strftime("%A") %></div>
+                            <div class="shortdate text-muted"><%= @c.lastdate.strftime("%B") %>, <%= @c.lastdate.strftime("%Y") %></div>
                         </td>
                         <td class="agenda-time">
                             9:00 PM 
@@ -65,9 +38,9 @@
                     <!-- Multiple events in a single day (note the rowspan) -->
                     <tr>
                         <td class="agenda-date" class="active" rowspan="3">
-                            <div class="dayofmonth"><%= c.date.strftime("%d")%></div>
-                            <div class="dayofweek"><%= c.date.strftime("%A") %></div>
-                            <div class="shortdate text-muted"><%= c.date.strftime("%B") %>, <%= c.date.strftime("%Y") %></div>
+                            <div class="dayofmonth"><%= @c.date.strftime("%d")%></div>
+                            <div class="dayofweek"><%= @c.date.strftime("%A") %></div>
+                            <div class="shortdate text-muted"><%= @c.date.strftime("%B") %>, <%= @c.date.strftime("%Y") %></div>
                         </td>
                         <td class="agenda-time">
                             9:00 - 11:00 AM 
@@ -102,8 +75,4 @@
             </table>
         </div>
     </div>
-     <% end %>
-     	<%= will_paginate(@companies, :renderer => WillPaginate::ActionView::LinkRenderer) %>
-
-</div>
-<p>admin home </p>
+    </div> 
